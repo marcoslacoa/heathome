@@ -6,6 +6,7 @@ import Products from './components/Products'
 import Process from './components/Process'
 import Testimonials from './components/Testimonials'
 import Footer from './components/Footer'
+import WhatsAppChat from './components/WhatsAppChat';
 import './App.css'
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
         <Process />
         <Testimonials />
         <Footer />
+                    <WhatsAppChat />
+
       </div>
     </LanguageProvider>
   )
