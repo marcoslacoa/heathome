@@ -1,0 +1,9 @@
+/* App specific styles */
+.App {
+  text-align: left;
+}
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}

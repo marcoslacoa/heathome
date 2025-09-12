@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base font family */
+@layer base {
+  html, body {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+/* Custom animations and effects */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out;
+}
+
+.text-shadow-lg {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Gradient background fallback */
+.gradient-bg {
+  background: linear-gradient(135deg, #f19c1e 0%, #c17d18 100%);
+}
+
+/* Backdrop blur support */
+.backdrop-blur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Custom shadow */
+.shadow-custom {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive text sizes */
+.text-responsive-xl {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+}
+
+.text-responsive-lg {
+  font-size: clamp(1.25rem, 4vw, 2rem);
+}
