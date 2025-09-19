@@ -1,109 +1,137 @@
 import React, { useState } from 'react';
+import { useLanguage } from '../LanguageContext';
+import { getCountryConfig } from '../countryConfig';
 import './WhatsAppChat.css';
 
 const WhatsAppChat = () => {
   const [open, setOpen] = useState(false);
+  const { t, country, language } = useLanguage();
+  const countryData = getCountryConfig(country);
 
   const toggleChat = () => {
     setOpen(!open);
   };
+
+  // Configuración de contactos por país
+  const getContactsConfig = () => {
+    const baseContacts = {
+      uruguay: [
+        {
+          phone: countryData.whatsappNumber,
+          message: language === 'es' ? 'Hola, necesito contactarme con ventas' : 'Olá, preciso entrar em contato com vendas',
+          label: language === 'es' ? 'Ventas' : 'Vendas',
+          avatar: '/images/ana.jpeg'
+        },
+        {
+          phone: countryData.whatsappNumber,
+          message: language === 'es' ? 'Hola, necesito contactarme con atención al cliente' : 'Olá, preciso entrar em contato com atendimento ao cliente',
+          label: language === 'es' ? 'Atención al cliente' : 'Atendimento ao cliente',
+          avatar: '/images/julio.jpeg'
+        },
+        {
+          phone: countryData.whatsappNumber,
+          message: language === 'es' ? 'Hola, necesito contactarme con el área de mantenimiento' : 'Olá, preciso entrar em contato com a área de manutenção',
+          label: language === 'es' ? 'Mantenimiento' : 'Manutenção',
+          avatar: '/images/macarena.jpeg'
+        }
+      ],
+      argentina: [
+        {
+          phone: countryData.whatsappNumber,
+          message: language === 'es' ? 'Hola, necesito contactarme con ventas' : 'Olá, preciso entrar em contato com vendas',
+          label: language === 'es' ? 'Ventas' : 'Vendas',
+          avatar: '/images/ana.jpeg'
+        },
+        {
+          phone: countryData.whatsappNumber,
+          message: language === 'es' ? 'Hola, necesito contactarme con atención al cliente' : 'Olá, preciso entrar em contato com atendimento ao cliente',
+          label: language === 'es' ? 'Atención al cliente' : 'Atendimento ao cliente',
+          avatar: '/images/julio.jpeg'
+        },
+        {
+          phone: countryData.whatsappNumber,
+          message: language === 'es' ? 'Hola, necesito contactarme con el área de mantenimiento' : 'Olá, preciso entrar em contato com a área de manutenção',
+          label: language === 'es' ? 'Mantenimiento' : 'Manutenção',
+          avatar: '/images/macarena.jpeg'
+        }
+      ],
+      brasil: [
+        {
+          phone: countryData.whatsappNumber,
+          message: 'Olá, preciso entrar em contato com vendas',
+          label: 'Vendas',
+          avatar: '/images/ana.jpeg'
+        },
+        {
+          phone: countryData.whatsappNumber,
+          message: 'Olá, preciso entrar em contato com atendimento ao cliente',
+          label: 'Atendimento ao cliente',
+          avatar: '/images/julio.jpeg'
+        },
+        {
+          phone: countryData.whatsappNumber,
+          message: 'Olá, preciso entrar em contato com a área de manutenção',
+          label: 'Manutenção',
+          avatar: '/images/macarena.jpeg'
+        }
+      ]
+    };
+    return baseContacts[country] || baseContacts.uruguay;
+  };
+
+  const contacts = getContactsConfig();
 
   return (
     <div className="whatsapp-chat">
       {open && (
         <div className="whatsapp-chat-popup">
           <header className="whatsapp-chat-header">
-            <h2 className="whatsapp-chat-title">Empieza una conversación</h2>
+            <h2 className="whatsapp-chat-title">
+              {language === 'es' ? 'Empieza una conversación' : 'Comece uma conversa'}
+            </h2>
             <p className="whatsapp-chat-subtitle">
-              Clickea en la burbuja para conversar por Whatsapp.
+              {language === 'es' 
+                ? 'Clickea en la burbuja para conversar por Whatsapp.' 
+                : 'Clique na bolha para conversar pelo WhatsApp.'
+              }
             </p>
           </header>
           <section className="whatsapp-chat-body">
             <p className="whatsapp-chat-info">
-              El equipo generalmente responde en algunos minutos.
+              {language === 'es' 
+                ? 'El equipo generalmente responde en algunos minutos.' 
+                : 'A equipe geralmente responde em alguns minutos.'
+              }
             </p>
             <ul className="whatsapp-chat-list">
-              {/* Contacto: Ventas 1 */}
-              <li className="whatsapp-chat-item">
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://wa.me/9897982020?text=Hola,%20necesito%20contactarme%20con%20ventas"
-                  className="whatsapp-chat-link"
-                >
-                  <div className="whatsapp-chat-avatar">
-                    <img
-                      src="/images/ana.jpeg"
-                      alt="Avatar Ventas 1"
-                      className="whatsapp-chat-avatar-img"
-                    />
-                  </div>
-                  <div className="whatsapp-chat-text">
-                    <div className="whatsapp-chat-text-label">Ventas</div>
-                  </div>
-                  <div className="whatsapp-chat-item-logo">
-                    <img
-                      src="/images/logo.png"
-                      alt="Logo HEATHOME"
-                      className="whatsapp-chat-item-logo-img"
-                    />
-                  </div>
-                </a>
-              </li>
-              {/* Contacto: Ventas 2 */}
-              <li className="whatsapp-chat-item">
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://wa.me/59896355111?text=Hola,%20necesito%20contactarme%20con%20ventas"
-                  className="whatsapp-chat-link"
-                >
-                  <div className="whatsapp-chat-avatar">
-                    <img
-                      src="/images/julio.jpeg"
-                      alt="Avatar Ventas 2"
-                      className="whatsapp-chat-avatar-img"
-                    />
-                  </div>
-                  <div className="whatsapp-chat-text">
-                    <div className="whatsapp-chat-text-label">Atención al cliente</div>
-                  </div>
-                  <div className="whatsapp-chat-item-logo">
-                    <img
-                      src="/images/logo.png"
-                      alt="Logo HEATHOME"
-                      className="whatsapp-chat-item-logo-img"
-                    />
-                  </div>
-                </a>
-              </li>
-              {/* Contacto: Service */}
-              <li className="whatsapp-chat-item">
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://wa.me/59897959399?text=Hola,%20necesito%20contactarme%20con%20el%20área%20de%20service"
-                  className="whatsapp-chat-link"
-                >
-                  <div className="whatsapp-chat-avatar">
-                    <img
-                      src="/images/macarena.jpeg"
-                      alt="Avatar Service"
-                      className="whatsapp-chat-avatar-img"
-                    />
-                  </div>
-                  <div className="whatsapp-chat-text">
-                    <div className="whatsapp-chat-text-label">Mantenimiento</div>
-                  </div>
-                  <div className="whatsapp-chat-item-logo">
-                    <img
-                      src="/images/logo.png"
-                      alt="Logo HEATHOME"
-                      className="whatsapp-chat-item-logo-img"
-                    />
-                  </div>
-                </a>
-              </li>
+              {contacts.map((contact, index) => (
+                <li key={index} className="whatsapp-chat-item">
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://wa.me/${contact.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(contact.message)}`}
+                    className="whatsapp-chat-link"
+                  >
+                    <div className="whatsapp-chat-avatar">
+                      <img
+                        src={contact.avatar}
+                        alt={`Avatar ${contact.label}`}
+                        className="whatsapp-chat-avatar-img"
+                      />
+                    </div>
+                    <div className="whatsapp-chat-text">
+                      <div className="whatsapp-chat-text-label">{contact.label}</div>
+                    </div>
+                    <div className="whatsapp-chat-item-logo">
+                      <img
+                        src="/images/logo.png"
+                        alt="Logo HEATHOME"
+                        className="whatsapp-chat-item-logo-img"
+                      />
+                    </div>
+                  </a>
+                </li>
+              ))}
             </ul>
           </section>
         </div>

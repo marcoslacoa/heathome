@@ -4,7 +4,19 @@ import { translations } from './translations';
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('es');
+  const [country, setCountry] = useState('uruguay'); // uruguay, argentina, brasil
+  
+  // Mapear país a idioma
+  const getLanguage = (countryCode) => {
+    const languageMap = {
+      'uruguay': 'es',
+      'argentina': 'es', 
+      'brasil': 'pt'
+    };
+    return languageMap[countryCode] || 'es';
+  };
+
+  const language = getLanguage(country);
 
   const t = (key) => {
     const keys = key.split('.');
@@ -17,12 +29,17 @@ export const LanguageProvider = ({ children }) => {
     return value || key;
   };
 
-  const changeLanguage = (lang) => {
-    setLanguage(lang);
+  const changeCountry = (countryCode) => {
+    setCountry(countryCode);
   };
 
   return (
-    <LanguageContext.Provider value={{ language, changeLanguage, t }}>
+    <LanguageContext.Provider value={{ 
+      country, 
+      language, 
+      changeCountry, 
+      t 
+    }}>
       {children}
     </LanguageContext.Provider>
   );

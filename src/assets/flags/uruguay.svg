@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <defs>
+    <g id="sun">
+      <g id="rays">
+        <g id="ray">
+          <polygon fill="#ffc900" points="0,0 0,7 50,0"/>
+        </g>
+        <use transform="rotate(22.5)" href="#ray"/>
+        <use transform="rotate(45)" href="#ray"/>
+        <use transform="rotate(67.5)" href="#ray"/>
+        <use transform="rotate(90)" href="#ray"/>
+        <use transform="rotate(112.5)" href="#ray"/>
+        <use transform="rotate(135)" href="#ray"/>
+        <use transform="rotate(157.5)" href="#ray"/>
+        <use transform="rotate(180)" href="#ray"/>
+        <use transform="rotate(202.5)" href="#ray"/>
+        <use transform="rotate(225)" href="#ray"/>
+        <use transform="rotate(247.5)" href="#ray"/>
+        <use transform="rotate(270)" href="#ray"/>
+        <use transform="rotate(292.5)" href="#ray"/>
+        <use transform="rotate(315)" href="#ray"/>
+        <use transform="rotate(337.5)" href="#ray"/>
+      </g>
+      <circle r="25" fill="#ffc900" stroke="#000" stroke-width="3"/>
+      <circle r="15" fill="none" stroke="#000" stroke-width="1"/>
+    </g>
+  </defs>
+  <rect width="900" height="600" fill="#fff"/>
+  <rect width="900" height="66.67" y="66.67" fill="#0038a8"/>
+  <rect width="900" height="66.67" y="200" fill="#0038a8"/>
+  <rect width="900" height="66.67" y="333.33" fill="#0038a8"/>
+  <rect width="900" height="66.67" y="466.67" fill="#0038a8"/>
+  <rect width="225" height="200" fill="#fff"/>
+  <rect width="225" height="22.22" y="22.22" fill="#0038a8"/>
+  <rect width="225" height="22.22" y="66.67" fill="#0038a8"/>
+  <rect width="225" height="22.22" y="111.11" fill="#0038a8"/>
+  <rect width="225" height="22.22" y="155.56" fill="#0038a8"/>
+  <use transform="translate(112.5,100)" href="#sun"/>
+</svg>

@@ -5,6 +5,7 @@ import About from './components/About'
 import Products from './components/Products'
 import Process from './components/Process'
 import Testimonials from './components/Testimonials'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
 import WhatsAppChat from './components/WhatsAppChat';
 import './App.css'
@@ -19,6 +20,7 @@ function App() {
         <Products />
         <Process />
         <Testimonials />
+        <Contact />
         <Footer />
                     <WhatsAppChat />
 

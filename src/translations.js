@@ -13,7 +13,7 @@ export const translations = {
       title: "HEATHOME",
       subtitle: "Especialistas en calefacción eléctrica por piso radiante",
       description: "Desarrollamos e implementamos productos de alta calidad para la comodidad del hogar",
-      cta: "Conocer más"
+      cta: "IR A TIENDA"
     },
     
     // About Section
@@ -100,6 +100,28 @@ export const translations = {
       }
     },
     
+    // Contact Section
+    contact: {
+      title: "Contáctanos",
+      subtitle: "¿Tienes alguna pregunta o necesitas más información? Estamos aquí para ayudarte.",
+      description: "Este formulario es nuestro canal principal de comunicación. Completa los campos y nos pondremos en contacto contigo a la brevedad para resolver todas tus consultas sobre nuestros productos y servicios.",
+      form: {
+        title: "Envíanos tu consulta",
+        name: "Nombre completo",
+        namePlaceholder: "Ingresa tu nombre completo",
+        email: "Correo electrónico",
+        emailPlaceholder: "tu@email.com",
+        subject: "Asunto",
+        subjectPlaceholder: "¿En qué podemos ayudarte?",
+        message: "Mensaje",
+        messagePlaceholder: "Describe tu consulta o solicitud...",
+        submit: "Enviar mensaje",
+        sending: "Enviando...",
+        success: "¡Mensaje enviado correctamente! Te contactaremos pronto.",
+        error: "Hubo un error al enviar el mensaje. Por favor, inténtalo nuevamente."
+      }
+    },
+    
     // Footer
     footer: {
       contact: "Contacto",
@@ -111,121 +133,6 @@ export const translations = {
       process: "Proceso de compra", 
       features: "Características",
       testimonials: "Testimonios"
-    }
-  },
-  
-  en: {
-    // Navigation
-    nav: {
-      about: "Who we are?",
-      products: "Products",
-      process: "Process",
-      contact: "Contact"
-    },
-    
-    // Hero Section
-    hero: {
-      title: "HEATHOME",
-      subtitle: "Electric underfloor heating specialists",
-      description: "We develop and implement high-quality products for home comfort",
-      cta: "Learn more"
-    },
-    
-    // About Section
-    about: {
-      title: "Welcome to HEATHOME",
-      whoWeAre: "Who we are?",
-      whoWeAreDesc: "We are specialists in electric underfloor heating.",
-      whatWeDo: "What do we do?",
-      whatWeDoDesc: "We develop and implement high-quality products for home comfort.",
-      whatWeMake: "What do we manufacture?",
-      whatWeMakeDesc: "We manufacture a heating cable that radiates heat through the floor, warming the environment.",
-      stats: {
-        experience: "Years of experience",
-        homes: "Heated homes",
-        support: "Technical support", 
-        satisfaction: "Satisfaction guaranteed"
-      }
-    },
-    
-    // Process Section
-    process: {
-      title: "Our purchase process",
-      cta: "View store",
-      step1: {
-        title: "Step 1",
-        desc: "Choose the product"
-      },
-      step2: {
-        title: "Step 2",
-        desc: "Connect to the platform"
-      },
-      step3: {
-        title: "Step 3",
-        desc: "Leave your location"
-      },
-      step4: {
-        title: "Step 4",
-        desc: "Shipping will be on the way"
-      }
-    },
-    
-    // Features Section
-    features: {
-      delivery: {
-        title: "Home delivery",
-        desc: "On all orders"
-      },
-      support: {
-        title: "Technical support",
-        desc: "Every day"
-      },
-      payment: {
-        title: "Mercado Pago",
-        desc: "Protects your data"
-      },
-      speed: {
-        title: "Purchase speed",
-        desc: "The best service"
-      }
-    },
-    
-    // Testimonials
-    testimonials: {
-      title: "What our customers say",
-      cta: {
-        title: "Ready to transform your home?",
-        subtitle: "Join thousands of families who already enjoy the comfort and efficiency of our heating system.",
-        button: "Request information"
-      },
-      testimonial1: {
-        text: "Excellent product, my house has never been so warm and comfortable. Installation was very simple.",
-        author: "María González",
-        location: "Buenos Aires"
-      },
-      testimonial2: {
-        text: "The best heating system I've tried. Very efficient and technical support is exceptional.",
-        author: "Carlos Rodríguez",
-        location: "Córdoba"
-      },
-      testimonial3: {
-        text: "Amazing difference it makes. Now my whole family enjoys a warm and cozy home.",
-        author: "Ana Martínez",
-        location: "Rosario"
-      }
-    },
-    
-    // Footer
-    footer: {
-      contact: "Contact",
-      followUs: "Follow us",
-      rights: "All rights reserved",
-      description: "Electric underfloor heating specialists. We develop and implement high-quality products for home comfort.",
-      quickLinks: "Quick links",
-      about: "About us",
-      process: "Purchase process",
-      features: "Features", 
-      testimonials: "Testimonials"
     }
   },
   
@@ -243,17 +150,18 @@ export const translations = {
       title: "HEATHOME",
       subtitle: "Especialistas em aquecimento elétrico por piso radiante",
       description: "Desenvolvemos e implementamos produtos de alta qualidade para o conforto do lar",
-      cta: "Saber mais"
+      cta: "IR À LOJA"
     },
     
     // About Section
     about: {
-      title: "Quem somos?",
-      subtitle: "Somos especialistas em aquecimento elétrico por piso radiante",
+      title: "Bem-vindos à HEATHOME",
+      whoWeAre: "Quem somos?",
+      whoWeAreDesc: "Somos especialistas em aquecimento elétrico por piso radiante.",
       whatWeDo: "O que fazemos?",
-      whatWeDoDesc: "Desenvolvemos e implementamos produtos de alta qualidade para o conforto do lar",
+      whatWeDoDesc: "Desenvolvemos e implementamos produtos de alta qualidade para o conforto do lar.",
       whatWeMake: "O que fabricamos?",
-      whatWeMakeDesc: "Fabricamos um cabo aquecedor que irradia calor através do piso, aquecendo o ambiente",
+      whatWeMakeDesc: "Fabricamos um cabo aquecedor que irradia calor através do piso, aquecendo o ambiente.",
       stats: {
         experience: "Anos de experiência",
         homes: "Lares aquecidos",
@@ -326,6 +234,28 @@ export const translations = {
         text: "Incrível a diferença que faz. Agora toda minha família desfruta de um lar quente e acolhedor.",
         author: "Ana Martínez",
         location: "Rosario"
+      }
+    },
+    
+    // Contact Section
+    contact: {
+      title: "Entre em contato",
+      subtitle: "Tem alguma pergunta ou precisa de mais informações? Estamos aqui para ajudá-lo.",
+      description: "Este formulário é nosso canal principal de comunicação. Preencha os campos e entraremos em contato com você em breve para resolver todas as suas dúvidas sobre nossos produtos e serviços.",
+      form: {
+        title: "Envie sua consulta",
+        name: "Nome completo",
+        namePlaceholder: "Digite seu nome completo",
+        email: "E-mail",
+        emailPlaceholder: "seu@email.com",
+        subject: "Assunto",
+        subjectPlaceholder: "Como podemos ajudá-lo?",
+        message: "Mensagem",
+        messagePlaceholder: "Descreva sua consulta ou solicitação...",
+        submit: "Enviar mensagem",
+        sending: "Enviando...",
+        success: "Mensagem enviada com sucesso! Entraremos em contato em breve.",
+        error: "Houve um erro ao enviar a mensagem. Por favor, tente novamente."
       }
     },
     

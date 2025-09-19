@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../LanguageContext';
+import { getCountryConfig } from '../countryConfig';
 
 const Hero = () => {
-  const { t } = useLanguage();
+  const { t, country } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const countryData = getCountryConfig(country);
 
   const slides = [
     '/images/heathome-portada.jpg',
@@ -19,7 +21,7 @@ const Hero = () => {
   };
 
   const goToShop = () => {
-    window.open('https://al2839543.mercadoshops.com.ar/', '_blank');
+    window.open(countryData.storeUrl, '_blank');
   };
 
   // Auto-slide functionality
@@ -36,7 +38,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative h-screen overflow-hidden" style={{ height: '80vh' }}>
       {/* Slider Container */}
       <div className="absolute inset-0">
         {slides.map((slide, index) => (
@@ -59,7 +61,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 
       {/* Content */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center">
+      <div className="relative z-10 h-full flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-white animate-fade-in-up">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-shadow-lg">
@@ -73,18 +75,12 @@ const Hero = () => {
             </p>
             
             {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={() => scrollToSection('about')}
-                className="bg-white bg-opacity-20 backdrop-blur text-white border-2 border-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-primary-500 transition-all transform hover:scale-105 shadow-lg"
-              >
-                Conocer Más
-              </button>
+            <div className="flex justify-center items-center">
               <button
                 onClick={goToShop}
                 className="bg-primary-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-600 transition-all transform hover:scale-105 shadow-lg"
               >
-                IR A TIENDA
+                {t('hero.cta')}
               </button>
             </div>
           </div>

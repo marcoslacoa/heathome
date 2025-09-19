@@ -1,36 +1,39 @@
 import { useLanguage } from '../LanguageContext';
-import spainFlag from '../assets/flags/spain.svg';
-import ukFlag from '../assets/flags/uk.svg';
+import uruguayFlag from '../assets/flags/uruguay.svg';
+import argentinaFlag from '../assets/flags/argentina.svg';
 import brazilFlag from '../assets/flags/brazil.svg';
 
 const LanguageSwitcher = () => {
-  const { language, changeLanguage } = useLanguage();
+  const { country, changeCountry } = useLanguage();
 
   return (
     <div className="flex gap-2">
       <button
-        onClick={() => changeLanguage('es')}
+        onClick={() => changeCountry('uruguay')}
         className={`w-8 h-6 rounded overflow-hidden border-2 transition-all ${
-          language === 'es' ? 'border-primary-500 scale-110' : 'border-gray-300 hover:border-gray-400'
+          country === 'uruguay' ? 'border-primary-500 scale-110' : 'border-gray-300 hover:border-gray-400'
         }`}
+        title="Uruguay"
       >
-        <img src={spainFlag} alt="Español" className="w-full h-full object-cover" />
+        <img src={uruguayFlag} alt="Uruguay" className="w-full h-full object-cover" />
       </button>
       <button
-        onClick={() => changeLanguage('en')}
+        onClick={() => changeCountry('argentina')}
         className={`w-8 h-6 rounded overflow-hidden border-2 transition-all ${
-          language === 'en' ? 'border-primary-500 scale-110' : 'border-gray-300 hover:border-gray-400'
+          country === 'argentina' ? 'border-primary-500 scale-110' : 'border-gray-300 hover:border-gray-400'
         }`}
+        title="Argentina"
       >
-        <img src={ukFlag} alt="English" className="w-full h-full object-cover" />
+        <img src={argentinaFlag} alt="Argentina" className="w-full h-full object-cover" />
       </button>
       <button
-        onClick={() => changeLanguage('pt')}
+        onClick={() => changeCountry('brasil')}
         className={`w-8 h-6 rounded overflow-hidden border-2 transition-all ${
-          language === 'pt' ? 'border-primary-500 scale-110' : 'border-gray-300 hover:border-gray-400'
+          country === 'brasil' ? 'border-primary-500 scale-110' : 'border-gray-300 hover:border-gray-400'
         }`}
+        title="Brasil"
       >
-        <img src={brazilFlag} alt="Português" className="w-full h-full object-cover" />
+        <img src={brazilFlag} alt="Brasil" className="w-full h-full object-cover" />
       </button>
     </div>
   );

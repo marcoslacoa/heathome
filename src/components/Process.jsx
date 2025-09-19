@@ -1,7 +1,9 @@
 import { useLanguage } from '../LanguageContext';
+import { getCountryConfig } from '../countryConfig';
 
 const Process = () => {
-  const { t } = useLanguage();
+  const { t, country } = useLanguage();
+  const countryData = getCountryConfig(country);
 
   const steps = [
     {
@@ -91,7 +93,7 @@ const Process = () => {
         {/* CTA Button */}
         <div className="text-center">
           <a
-            href="https://al2839543.mercadoshops.com.ar/"
+            href={countryData.storeUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-4 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-lg transition-colors duration-300"
