@@ -60,7 +60,7 @@ const Contact = () => {
         </div>
 
         {/* Texto explicativo */}
-        <div className="text-center mb-12 animate-fade-in-up">
+        {/* <div className="text-center mb-12 animate-fade-in-up">
           <div className="bg-primary-50 p-8 rounded-2xl mb-8 max-w-4xl mx-auto">
             <svg className="w-16 h-16 text-primary-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -69,7 +69,8 @@ const Contact = () => {
               {t('contact.description')}
             </p>
           </div>
-        </div>        {/* Formulario de contacto */}
+        </div>         */}
+        {/* Formulario de contacto */}
         <div className="animate-fade-in-up">
           <div className="bg-white p-8 md:p-12 rounded-2xl shadow-custom max-w-6xl mx-auto">
             <h3 className="text-2xl font-bold mb-8 text-gray-800 text-center">

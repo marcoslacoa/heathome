@@ -1,0 +1,224 @@
+/* src/components/LanguageWelcome.css */
+.language-welcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.language-welcome-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.language-welcome-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.language-welcome-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 30px;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  transition: opacity 0.5s ease-in-out;
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.language-welcome-subtitle {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 40px;
+  line-height: 1.4;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.language-welcome-options {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.language-welcome-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 35px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+  min-width: 160px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.language-welcome-option:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+}
+
+.language-welcome-flag {
+  margin-bottom: 10px;
+}
+
+.language-welcome-flag-img {
+  width: 48px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.language-welcome-name {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.heathome-brand {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heathome-logo {
+  height: 80px;
+  width: auto;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .language-welcome-overlay {
+    align-items: flex-start;
+    padding-top: 10vh;
+  }
+
+  .language-welcome-content {
+    padding: 40px 30px;
+    margin: 0 20px;
+    max-width: none;
+  }
+
+  .language-welcome-title {
+    font-size: 2.8rem;
+    min-height: 3.5rem;
+    margin-bottom: 25px;
+  }
+
+  .language-welcome-subtitle {
+    font-size: 1rem;
+  }
+
+  .language-welcome-options {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .language-welcome-option {
+    padding: 20px 25px;
+    font-size: 1.2rem;
+    width: 100%;
+    min-width: auto;
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .language-welcome-flag {
+    margin-bottom: 0;
+  }
+
+  .language-welcome-flag-img {
+    width: 40px;
+    height: 27px;
+  }
+}
+
+@media (max-width: 480px) {
+  .language-welcome-overlay {
+    align-items: flex-start;
+    padding-top: 8vh;
+  }
+
+  .language-welcome-content {
+    padding: 30px 20px;
+    margin: 0 10px;
+  }
+
+  .language-welcome-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    min-height: 3rem;
+  }
+
+  .language-welcome-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+  }
+
+  .language-welcome-options {
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .language-welcome-option {
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    width: 100%;
+    min-width: auto;
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .language-welcome-flag-img {
+    width: 32px;
+    height: 21px;
+  }
+
+  .heathome-logo {
+    height: 60px;
+  }
+}

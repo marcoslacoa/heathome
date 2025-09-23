@@ -15,26 +15,6 @@ const WhatsAppChat = () => {
   // Configuración de contactos por país
   const getContactsConfig = () => {
     const baseContacts = {
-      uruguay: [
-        {
-          phone: countryData.whatsappNumber,
-          message: language === 'es' ? 'Hola, necesito contactarme con ventas' : 'Olá, preciso entrar em contato com vendas',
-          label: language === 'es' ? 'Ventas' : 'Vendas',
-          avatar: '/images/ana.jpeg'
-        },
-        {
-          phone: countryData.whatsappNumber,
-          message: language === 'es' ? 'Hola, necesito contactarme con atención al cliente' : 'Olá, preciso entrar em contato com atendimento ao cliente',
-          label: language === 'es' ? 'Atención al cliente' : 'Atendimento ao cliente',
-          avatar: '/images/julio.jpeg'
-        },
-        {
-          phone: countryData.whatsappNumber,
-          message: language === 'es' ? 'Hola, necesito contactarme con el área de mantenimiento' : 'Olá, preciso entrar em contato com a área de manutenção',
-          label: language === 'es' ? 'Mantenimiento' : 'Manutenção',
-          avatar: '/images/macarena.jpeg'
-        }
-      ],
       argentina: [
         {
           phone: countryData.whatsappNumber,
@@ -74,9 +54,29 @@ const WhatsAppChat = () => {
           label: 'Manutenção',
           avatar: '/images/macarena.jpeg'
         }
+      ],
+      uruguay: [
+        {
+          phone: countryData.whatsappNumber,
+          message: language === 'es' ? 'Hola, necesito contactarme con ventas' : 'Olá, preciso entrar em contato com vendas',
+          label: language === 'es' ? 'Ventas' : 'Vendas',
+          avatar: '/images/ana.jpeg'
+        },
+        {
+          phone: countryData.whatsappNumber,
+          message: language === 'es' ? 'Hola, necesito contactarme con atención al cliente' : 'Olá, preciso entrar em contato com atendimento ao cliente',
+          label: language === 'es' ? 'Atención al cliente' : 'Atendimento ao cliente',
+          avatar: '/images/julio.jpeg'
+        },
+        {
+          phone: countryData.whatsappNumber,
+          message: language === 'es' ? 'Hola, necesito contactarme con el área de mantenimiento' : 'Olá, preciso entrar em contato com a área de manutenção',
+          label: language === 'es' ? 'Mantenimiento' : 'Manutenção',
+          avatar: '/images/macarena.jpeg'
+        }
       ]
     };
-    return baseContacts[country] || baseContacts.uruguay;
+    return baseContacts[country] || baseContacts.argentina;
   };
 
   const contacts = getContactsConfig();
