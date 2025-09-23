@@ -34,6 +34,10 @@
   background: linear-gradient(135deg, #f19c1e 0%, #c17d18 100%);
 }
 
+.gradient-bg-secondary {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
 /* Backdrop blur support */
 .backdrop-blur {
   backdrop-filter: blur(10px);
