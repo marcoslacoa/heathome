@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ff8c42 100%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -22,7 +22,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.1);
   z-index: 1;
 }
 
@@ -123,7 +123,7 @@
 }
 
 .heathome-logo {
-  height: 80px;
+  height: 120px;
   width: auto;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
 }
@@ -219,6 +219,6 @@
   }
 
   .heathome-logo {
-    height: 60px;
+    height: 90px;
   }
 }

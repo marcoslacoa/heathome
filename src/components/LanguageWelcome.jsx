@@ -83,7 +83,7 @@ const LanguageWelcome = ({ onCountrySelect }) => {
         </div>
         
         <div className="heathome-brand">
-          <img src="/images/logo.png" alt="HEATHOME" className="heathome-logo" />
+          <img src="/images/logo-heathome.png" alt="HEATHOME" className="heathome-logo" />
         </div>
       </div>
     </div>
