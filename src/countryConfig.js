@@ -3,7 +3,7 @@ export const countryConfig = {
     currency: 'ARS',
     currencySymbol: '$',
     storeUrl: 'https://listado.mercadolibre.com.ar/tienda/heat-home/', // https://al2839543.mercadoshops.com.ar/ 
-    whatsappNumber: '+5491199999999', // Reemplazar con número real de Argentina
+    whatsappNumber: '+5491155770238',
     address: 'Buenos Aires, Argentina', 
     deliveryText: 'Envíos a toda Argentina'
   },
@@ -11,7 +11,7 @@ export const countryConfig = {
     currency: 'BRL',
     currencySymbol: 'R$',
     storeUrl: 'https://al2839543.mercadoshops.br/',
-    whatsappNumber: '+5511999999999', // Reemplazar con número real de Brasil
+    whatsappNumber: '+555399054981',
     address: 'São Paulo, Brasil',
     deliveryText: 'Entregas em todo Brasil'
   },
@@ -19,7 +19,7 @@ export const countryConfig = {
     currency: 'UYU',
     currencySymbol: '$U',
     storeUrl: 'https://listado.mercadolibre.com.uy/pagina/heathome/', // https://www.mercadolibre.com.uy/pagina/heathome
-    whatsappNumber: '+59899999999', // Reemplazar con número real de Uruguay
+    whatsappNumber: '+59897959399',
     address: 'Montevideo, Uruguay',
     deliveryText: 'Envíos a todo Uruguay'
   }

@@ -12,74 +12,17 @@ const WhatsAppChat = () => {
     setOpen(!open);
   };
 
-  // Configuración de contactos por país
-  const getContactsConfig = () => {
-    const baseContacts = {
-      argentina: [
-        {
-          phone: countryData.whatsappNumber,
-          message: language === 'es' ? 'Hola, necesito contactarme con ventas' : 'Olá, preciso entrar em contato com vendas',
-          label: language === 'es' ? 'Ventas' : 'Vendas',
-          avatar: '/images/ana.jpeg'
-        },
-        {
-          phone: countryData.whatsappNumber,
-          message: language === 'es' ? 'Hola, necesito contactarme con atención al cliente' : 'Olá, preciso entrar em contato com atendimento ao cliente',
-          label: language === 'es' ? 'Atención al cliente' : 'Atendimento ao cliente',
-          avatar: '/images/julio.jpeg'
-        },
-        {
-          phone: countryData.whatsappNumber,
-          message: language === 'es' ? 'Hola, necesito contactarme con el área de mantenimiento' : 'Olá, preciso entrar em contato com a área de manutenção',
-          label: language === 'es' ? 'Mantenimiento' : 'Manutenção',
-          avatar: '/images/macarena.jpeg'
-        }
-      ],
-      brasil: [
-        {
-          phone: countryData.whatsappNumber,
-          message: 'Olá, preciso entrar em contato com vendas',
-          label: 'Vendas',
-          avatar: '/images/ana.jpeg'
-        },
-        {
-          phone: countryData.whatsappNumber,
-          message: 'Olá, preciso entrar em contato com atendimento ao cliente',
-          label: 'Atendimento ao cliente',
-          avatar: '/images/julio.jpeg'
-        },
-        {
-          phone: countryData.whatsappNumber,
-          message: 'Olá, preciso entrar em contato com a área de manutenção',
-          label: 'Manutenção',
-          avatar: '/images/macarena.jpeg'
-        }
-      ],
-      uruguay: [
-        {
-          phone: countryData.whatsappNumber,
-          message: language === 'es' ? 'Hola, necesito contactarme con ventas' : 'Olá, preciso entrar em contato com vendas',
-          label: language === 'es' ? 'Ventas' : 'Vendas',
-          avatar: '/images/ana.jpeg'
-        },
-        {
-          phone: countryData.whatsappNumber,
-          message: language === 'es' ? 'Hola, necesito contactarme con atención al cliente' : 'Olá, preciso entrar em contato com atendimento ao cliente',
-          label: language === 'es' ? 'Atención al cliente' : 'Atendimento ao cliente',
-          avatar: '/images/julio.jpeg'
-        },
-        {
-          phone: countryData.whatsappNumber,
-          message: language === 'es' ? 'Hola, necesito contactarme con el área de mantenimiento' : 'Olá, preciso entrar em contato com a área de manutenção',
-          label: language === 'es' ? 'Mantenimiento' : 'Manutenção',
-          avatar: '/images/macarena.jpeg'
-        }
-      ]
+  // Configuración del contacto de ventas
+  const getSalesContact = () => {
+    return {
+      phone: countryData.whatsappNumber,
+      message: language === 'es' ? 'Hola, necesito información sobre los productos de calefacción' : 'Olá, preciso de informações sobre os produtos de aquecimento',
+      label: language === 'es' ? 'Ventas' : 'Vendas',
+      avatar: '/images/ana.jpeg'
     };
-    return baseContacts[country] || baseContacts.argentina;
   };
 
-  const contacts = getContactsConfig();
+  const contact = getSalesContact();
 
   return (
     <div className="whatsapp-chat">
@@ -104,34 +47,32 @@ const WhatsAppChat = () => {
               }
             </p>
             <ul className="whatsapp-chat-list">
-              {contacts.map((contact, index) => (
-                <li key={index} className="whatsapp-chat-item">
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`https://wa.me/${contact.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(contact.message)}`}
-                    className="whatsapp-chat-link"
-                  >
-                    <div className="whatsapp-chat-avatar">
-                      <img
-                        src={contact.avatar}
-                        alt={`Avatar ${contact.label}`}
-                        className="whatsapp-chat-avatar-img"
-                      />
-                    </div>
-                    <div className="whatsapp-chat-text">
-                      <div className="whatsapp-chat-text-label">{contact.label}</div>
-                    </div>
-                    <div className="whatsapp-chat-item-logo">
-                      <img
-                        src="/images/logo.png"
-                        alt="Logo HEATHOME"
-                        className="whatsapp-chat-item-logo-img"
-                      />
-                    </div>
-                  </a>
-                </li>
-              ))}
+              <li className="whatsapp-chat-item">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`https://wa.me/${contact.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(contact.message)}`}
+                  className="whatsapp-chat-link"
+                >
+                  <div className="whatsapp-chat-avatar">
+                    <img
+                      src={contact.avatar}
+                      alt={`Avatar ${contact.label}`}
+                      className="whatsapp-chat-avatar-img"
+                    />
+                  </div>
+                  <div className="whatsapp-chat-text">
+                    <div className="whatsapp-chat-text-label">{contact.label}</div>
+                  </div>
+                  <div className="whatsapp-chat-item-logo">
+                    <img
+                      src="/images/logo.png"
+                      alt="Logo HEATHOME"
+                      className="whatsapp-chat-item-logo-img"
+                    />
+                  </div>
+                </a>
+              </li>
             </ul>
           </section>
         </div>
