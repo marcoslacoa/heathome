@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { translations } from './translations';
+import { initializeDynamicConfig } from './countryConfig';
 
 const LanguageContext = createContext();
 
@@ -20,19 +21,27 @@ export const LanguageProvider = ({ children }) => {
 
   const language = getLanguage(country);
 
-  // Verificar si es la primera visita al cargar la aplicación
+  // Inicializar configuración dinámica y verificar primera visita
   useEffect(() => {
-    const savedCountry = localStorage.getItem('heathome-country');
-    const hasVisited = localStorage.getItem('heathome-visited');
-    
-    if (hasVisited && savedCountry) {
-      setCountry(savedCountry);
-      setIsFirstVisit(false);
-    } else {
-      setIsFirstVisit(true);
-    }
-    
-    setIsLoading(false);
+    const initializeApp = async () => {
+      // Inicializar configuración dinámica de tiendas
+      await initializeDynamicConfig();
+      
+      // Verificar si es la primera visita
+      const savedCountry = localStorage.getItem('heathome-country');
+      const hasVisited = localStorage.getItem('heathome-visited');
+      
+      if (hasVisited && savedCountry) {
+        setCountry(savedCountry);
+        setIsFirstVisit(false);
+      } else {
+        setIsFirstVisit(true);
+      }
+      
+      setIsLoading(false);
+    };
+
+    initializeApp();
   }, []);
 
   const t = (key) => {

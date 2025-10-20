@@ -1,8 +1,9 @@
 import { useLanguage } from '../LanguageContext';
-import { getCountryConfig } from '../countryConfig';
+import { getCountryConfig, getDynamicContacts } from '../countryConfig';
 
 const Footer = () => {
   const { t } = useLanguage();
+  const dynamicContacts = getDynamicContacts();
 
   return (
     <footer className="bg-gray-800 text-white py-16">
@@ -17,7 +18,7 @@ const Footer = () => {
             <div className="mb-6">
               <h4 className="text-lg font-semibold mb-3 text-primary-400">INSTAGRAM:</h4>
               <a 
-                href="https://www.instagram.com/heat.home.sudamerica/" 
+                href={dynamicContacts.instagram || "https://www.instagram.com/heat.home.sudamerica/"} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-primary-400 transition-colors flex items-center space-x-2"
@@ -39,20 +40,20 @@ const Footer = () => {
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <span className="text-sm text-gray-400">ARG:</span>
-                    <a href="tel:+5491155770238" className="text-gray-300 hover:text-primary-400 transition-colors">
-                      +549 11 5577 0238
+                    <a href={`tel:${dynamicContacts.phones?.argentina || '+5491155770238'}`} className="text-gray-300 hover:text-primary-400 transition-colors">
+                      {dynamicContacts.phones?.argentina || '+549 11 5577 0238'}
                     </a>
                   </div>
                   <div className="flex items-center space-x-2">
                     <span className="text-sm text-gray-400">BR:</span>
-                    <a href="tel:+555399054981" className="text-gray-300 hover:text-primary-400 transition-colors">
-                      +55 53 99905 4981
+                    <a href={`tel:${dynamicContacts.phones?.brasil || '+555399054981'}`} className="text-gray-300 hover:text-primary-400 transition-colors">
+                      {dynamicContacts.phones?.brasil || '+55 53 99905 4981'}
                     </a>
                   </div>
                   <div className="flex items-center space-x-2">
                     <span className="text-sm text-gray-400">UY:</span>
-                    <a href="tel:+59897959399" className="text-gray-300 hover:text-primary-400 transition-colors">
-                      +598 97 959 399
+                    <a href={`tel:${dynamicContacts.phones?.uruguay || '+59897959399'}`} className="text-gray-300 hover:text-primary-400 transition-colors">
+                      {dynamicContacts.phones?.uruguay || '+598 97 959 399'}
                     </a>
                   </div>
                 </div>
@@ -61,8 +62,8 @@ const Footer = () => {
                 <svg className="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:info@heathome.net" className="text-gray-300 hover:text-primary-400 transition-colors">
-                  info@heathome.net
+                <a href={`mailto:${dynamicContacts.email || 'info@heathome.net'}`} className="text-gray-300 hover:text-primary-400 transition-colors">
+                  {dynamicContacts.email || 'info@heathome.net'}
                 </a>
               </div>
             </div>
