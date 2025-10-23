@@ -2,8 +2,9 @@ import { useLanguage } from '../LanguageContext';
 import { getCountryConfig, getDynamicContacts } from '../countryConfig';
 
 const Footer = () => {
-  const { t } = useLanguage();
+  const { t, country } = useLanguage();
   const dynamicContacts = getDynamicContacts();
+  const countryConfig = getCountryConfig(country);
 
   return (
     <footer className="bg-gray-800 text-white py-16">
@@ -58,13 +59,20 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <svg className="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <a href={`mailto:${dynamicContacts.email || 'info@heathome.net'}`} className="text-gray-300 hover:text-primary-400 transition-colors">
-                  {dynamicContacts.email || 'info@heathome.net'}
-                </a>
+              <div className="space-y-2">
+                <div className="flex items-center space-x-3">
+                  <svg className="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <div className="flex flex-col space-y-1">
+                    <a href={`mailto:${dynamicContacts.email_1 || 'info@heathome.net'}`} className="text-gray-300 hover:text-primary-400 transition-colors">
+                      {dynamicContacts.email_1 || 'info@heathome.net'}
+                    </a>
+                    <a href={`mailto:${dynamicContacts.email_2 || 'ventas@heathome.net'}`} className="text-gray-300 hover:text-primary-400 transition-colors">
+                      {dynamicContacts.email_2 || 'ventas@heathome.net'}
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -86,6 +94,25 @@ const Footer = () => {
                 {t('footer.testimonials')}
               </a>
             </div>
+          </div>
+        </div>
+
+        {/* MercadoLibre Section */}
+        <div className="border-t border-gray-700 mt-12 pt-8">
+          <div className="flex flex-col items-center space-y-4">
+            <h4 className="text-lg font-semibold text-primary-400">{t('footer.findUsOn')}</h4>
+            <a 
+              href={countryConfig.storeUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="transition-transform hover:scale-105"
+            >
+              <img 
+                src="/images/mercadolibre.png" 
+                alt="MercadoLibre" 
+                className="h-12 w-auto"
+              />
+            </a>
           </div>
         </div>
 

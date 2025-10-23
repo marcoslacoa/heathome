@@ -105,6 +105,10 @@ export const translations = {
       title: "Contáctanos",
       subtitle: "¿Tienes alguna pregunta o necesitas más información? Estamos aquí para ayudarte.",
       description: "Este formulario es nuestro canal principal de comunicación. Completa los campos y nos pondremos en contacto contigo a la brevedad para resolver todas tus consultas sobre nuestros productos y servicios.",
+      location: {
+        title: "Nuestra Ubicación",
+        viewInMaps: "Ver en Google Maps"
+      },
       form: {
         title: "Envíanos tu consulta",
         name: "Nombre completo",
@@ -132,7 +136,8 @@ export const translations = {
       about: "Sobre nosotros",
       process: "Proceso de compra", 
       features: "Características",
-      testimonials: "Testimonios"
+      testimonials: "Testimonios",
+      findUsOn: "Encuéntranos en:"
     }
   },
   
@@ -242,6 +247,10 @@ export const translations = {
       title: "Entre em contato",
       subtitle: "Tem alguma pergunta ou precisa de mais informações? Estamos aqui para ajudá-lo.",
       description: "Este formulário é nosso canal principal de comunicação. Preencha os campos e entraremos em contato com você em breve para resolver todas as suas dúvidas sobre nossos produtos e serviços.",
+      location: {
+        title: "Nossa Localização",
+        viewInMaps: "Ver no Google Maps"
+      },
       form: {
         title: "Envie sua consulta",
         name: "Nome completo",
@@ -269,7 +278,8 @@ export const translations = {
       about: "Sobre nós",
       process: "Processo de compra",
       features: "Características",
-      testimonials: "Depoimentos"
+      testimonials: "Depoimentos",
+      findUsOn: "Encontre-nos em:"
     }
   }
 };

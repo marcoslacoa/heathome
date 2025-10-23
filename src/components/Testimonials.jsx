@@ -62,24 +62,6 @@ const Testimonials = () => {
             </div>
           ))}
         </div>
-
-        {/* CTA Section */}
-        <div className="text-center mt-16 animate-fade-in-up">
-          <div className="bg-primary-50 p-12 rounded-3xl">
-            <h3 className="text-3xl font-bold mb-6 text-gray-800">
-              {t('testimonials.cta.title')}
-            </h3>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              {t('testimonials.cta.subtitle')}
-            </p>
-            <a 
-              href="#contact"
-              className="gradient-bg text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all transform hover:scale-105 inline-block"
-            >
-              {t('testimonials.cta.button')}
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );

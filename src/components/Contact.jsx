@@ -1,8 +1,22 @@
 import { useState } from 'react';
 import { useLanguage } from '../LanguageContext';
+import { getLocationByCountry } from '../countryConfig';
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, country } = useLanguage();
+  const locationData = getLocationByCountry(country);
+  
+  // Función para convertir URL de Google Maps a embed URL
+  const getEmbedUrl = (mapUrl) => {
+    // Si ya es una URL de embed, devolverla tal como está
+    if (mapUrl.includes('maps/embed')) {
+      return mapUrl;
+    }
+    
+    // Para cualquier URL de Google Maps, crear una URL de embed usando la dirección
+    const address = encodeURIComponent(locationData.address);
+    return `https://maps.google.com/maps?q=${address}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+  };
   
   const [formData, setFormData] = useState({
     name: '',
@@ -70,130 +84,178 @@ const Contact = () => {
             </p>
           </div>
         </div>         */}
-        {/* Formulario de contacto */}
+        {/* Formulario de contacto y mapa */}
         <div className="animate-fade-in-up">
-          <div className="bg-white p-8 md:p-12 rounded-2xl shadow-custom max-w-6xl mx-auto">
-            <h3 className="text-2xl font-bold mb-8 text-gray-800 text-center">
-              {t('contact.form.title')}
-            </h3>
-            
-            <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
-              {/* Nombre */}
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('contact.form.name')} *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                  placeholder={t('contact.form.namePlaceholder')}
-                />
-              </div>
+          <div className="bg-white rounded-2xl shadow-custom max-w-7xl mx-auto overflow-hidden">
+            <div className="grid lg:grid-cols-2 gap-0">
+              {/* Formulario */}
+              <div className="p-8 md:p-12">
+                <h3 className="text-2xl font-bold mb-8 text-gray-800 text-center">
+                  {t('contact.form.title')}
+                </h3>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Nombre */}
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                      {t('contact.form.name')} *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      placeholder={t('contact.form.namePlaceholder')}
+                    />
+                  </div>
 
-              {/* Email */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('contact.form.email')} *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                  placeholder={t('contact.form.emailPlaceholder')}
-                />
-              </div>
+                  {/* Email */}
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      {t('contact.form.email')} *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      placeholder={t('contact.form.emailPlaceholder')}
+                    />
+                  </div>
 
-              {/* Asunto - ocupa toda la fila */}
-              <div className="md:col-span-2">
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('contact.form.subject')} *
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                  placeholder={t('contact.form.subjectPlaceholder')}
-                />
-              </div>
+                  {/* Asunto */}
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                      {t('contact.form.subject')} *
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      placeholder={t('contact.form.subjectPlaceholder')}
+                    />
+                  </div>
 
-              {/* Mensaje - ocupa toda la fila */}
-              <div className="md:col-span-2">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('contact.form.message')} *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-vertical"
-                  placeholder={t('contact.form.messagePlaceholder')}
-                />
-              </div>
+                  {/* Mensaje */}
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      {t('contact.form.message')} *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={4}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-vertical"
+                      placeholder={t('contact.form.messagePlaceholder')}
+                    />
+                  </div>
 
-              {/* Botón de envío - ocupa toda la fila */}
-              <div className="md:col-span-2">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition-all transform ${
-                    isSubmitting 
-                      ? 'bg-gray-400 cursor-not-allowed' 
-                      : 'gradient-bg hover:shadow-lg hover:scale-105'
-                  }`}
-                >
-                  {isSubmitting ? (
-                    <div className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      {t('contact.form.sending')}
+                  {/* Botón de envío */}
+                  <div>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition-all transform ${
+                        isSubmitting 
+                          ? 'bg-gray-400 cursor-not-allowed' 
+                          : 'gradient-bg hover:shadow-lg hover:scale-105'
+                      }`}
+                    >
+                      {isSubmitting ? (
+                        <div className="flex items-center justify-center">
+                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          {t('contact.form.sending')}
+                        </div>
+                      ) : (
+                        t('contact.form.submit')
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Estados de envío */}
+                  {submitStatus === 'success' && (
+                    <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                      <div className="flex items-center">
+                        <svg className="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <p className="text-green-700 font-medium">{t('contact.form.success')}</p>
+                      </div>
                     </div>
-                  ) : (
-                    t('contact.form.submit')
                   )}
-                </button>
+
+                  {submitStatus === 'error' && (
+                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                      <div className="flex items-center">
+                        <svg className="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                        </svg>
+                        <p className="text-red-700 font-medium">{t('contact.form.error')}</p>
+                      </div>
+                    </div>
+                  )}
+                </form>
               </div>
 
-              {/* Estados de envío - ocupan toda la fila */}
-              {submitStatus === 'success' && (
-                <div className="md:col-span-2 p-4 bg-green-50 border border-green-200 rounded-lg">
-                  <div className="flex items-center">
-                    <svg className="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              {/* Mapa */}
+              <div className="bg-gray-100 lg:bg-transparent">
+                {/* Dirección */}
+                <div className="p-6 bg-white lg:bg-gray-50 border-b lg:border-b-0">
+                  <div className="flex items-center space-x-3">
+                    <svg className="w-6 h-6 text-primary-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <p className="text-green-700 font-medium">{t('contact.form.success')}</p>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">{t('contact.location.title') || 'Nuestra Ubicación'}</h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">{locationData.address}</p>
+                    </div>
                   </div>
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="md:col-span-2 p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <div className="flex items-center">
-                    <svg className="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  <a 
+                    href={locationData.mapUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center space-x-2 text-primary-600 hover:text-primary-700 text-sm font-medium transition-colors"
+                  >
+                    <span>{t('contact.location.viewInMaps') || 'Ver en Google Maps'}</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                    <p className="text-red-700 font-medium">{t('contact.form.error')}</p>
-                  </div>
+                  </a>
                 </div>
-              )}
-            </form>
+                
+                {/* Mapa */}
+                <div className="h-full min-h-[350px] lg:min-h-[550px]">
+                  <iframe
+                    src={getEmbedUrl(locationData.mapUrl)}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={`Ubicación de HeatHome - ${locationData.address}`}
+                    className="w-full h-full"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

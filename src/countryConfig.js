@@ -39,12 +39,14 @@ let dynamicCountryConfig = { ...baseCountryConfig };
 // Variable para almacenar los contactos dinámicos
 let dynamicContacts = {};
 
+// Variable para almacenar las ubicaciones dinámicas
+let dynamicLocations = {};
+
 // Función para obtener los contactos dinámicos del endpoint
 export const fetchDynamicContacts = async () => {
   try {
     const response = await fetch('https://marcoslacoa.com/api/obras/proyectos/60f9d436-7550-48cf-b641-a161085b2a4b/contactos/');
     const contacts = await response.json();
-    
     // Obtener el primer contacto (índice 0)
     if (contacts.length > 0) {
       const contact = contacts[0];
@@ -59,7 +61,8 @@ export const fetchDynamicContacts = async () => {
           brasil: contact.whatsapp_2 || '555399054981',
           uruguay: contact.whatsapp_3 || '59897959399'
         },
-        email: contact.email_1 || 'info@heathome.net',
+        email_1: contact.email_1 || 'info@heathome.net',
+        email_2: contact.email_2 || 'ventas@heathome.net',
         instagram: contact.instagram || 'https://www.instagram.com/heat.home.sudamerica/'
       };
 
@@ -89,7 +92,8 @@ export const fetchDynamicContacts = async () => {
         brasil: '555399054981',
         uruguay: '59897959399'
       },
-      email: 'info@heathome.net',
+      email_1: 'info@heathome.net',
+      email_2: 'ventas@heathome.net',
       instagram: 'https://www.instagram.com/heat.home.sudamerica/'
     };
   }
@@ -100,16 +104,32 @@ export const fetchDynamicStores = async () => {
   try {
     const response = await fetch('https://marcoslacoa.com/api/obras/proyectos/60f9d436-7550-48cf-b641-a161085b2a4b/obras/');
     const stores = await response.json();
+    console.log('Fetched stores:', stores);
     
-    // Actualizar las URLs de las tiendas
+    // Actualizar las URLs de las tiendas y ubicaciones
     Object.keys(baseCountryConfig).forEach(country => {
       const countryCode = countryCodeMap[country];
       const storeData = stores.find(store => store.nombre === countryCode);
       
-      if (storeData && storeData.descripcion) {
-        dynamicCountryConfig[country] = {
-          ...baseCountryConfig[country],
-          storeUrl: storeData.descripcion
+      if (storeData) {
+        // Actualizar configuración de tienda
+        if (storeData.descripcion) {
+          dynamicCountryConfig[country] = {
+            ...baseCountryConfig[country],
+            storeUrl: storeData.descripcion
+          };
+        }
+        
+        // Almacenar datos de ubicación
+        dynamicLocations[country] = {
+          address: storeData.ubicacion || baseCountryConfig[country].address,
+          mapUrl: storeData.cliente || 'https://maps.app.goo.gl/QtjREPQZmADCsjrb8'
+        };
+      } else {
+        // Valores por defecto si no se encuentra el país
+        dynamicLocations[country] = {
+          address: baseCountryConfig[country].address,
+          mapUrl: 'https://maps.app.goo.gl/QtjREPQZmADCsjrb8'
         };
       }
     });
@@ -117,6 +137,15 @@ export const fetchDynamicStores = async () => {
     return dynamicCountryConfig;
   } catch (error) {
     console.error('Error fetching dynamic stores:', error);
+    
+    // En caso de error, usar valores por defecto para ubicaciones
+    Object.keys(baseCountryConfig).forEach(country => {
+      dynamicLocations[country] = {
+        address: baseCountryConfig[country].address,
+        mapUrl: 'https://maps.app.goo.gl/QtjREPQZmADCsjrb8'
+      };
+    });
+    
     // En caso de error, usar la configuración base
     return baseCountryConfig;
   }
@@ -139,4 +168,17 @@ export const getCountryConfig = (country) => {
 // Función para obtener los contactos dinámicos
 export const getDynamicContacts = () => {
   return dynamicContacts;
+};
+
+// Función para obtener las ubicaciones dinámicas
+export const getDynamicLocations = () => {
+  return dynamicLocations;
+};
+
+// Función para obtener la ubicación de un país específico
+export const getLocationByCountry = (country) => {
+  return dynamicLocations[country] || {
+    address: baseCountryConfig[country]?.address || 'Buenos Aires, Argentina',
+    mapUrl: 'https://maps.app.goo.gl/QtjREPQZmADCsjrb8'
+  };
 };
