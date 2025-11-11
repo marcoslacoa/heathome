@@ -1,19 +1,26 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { translations } from './translations';
 import { initializeDynamicConfig } from './countryConfig';
+import { getCountryFromIP } from './services/geolocation';
 
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [country, setCountry] = useState('argentina'); // argentina, brasil, uruguay
-  const [isFirstVisit, setIsFirstVisit] = useState(true);
+  const [country, setCountry] = useState(() => {
+    // Cargar país guardado, argentina por defecto
+    const savedCountry = localStorage.getItem('heathome-country');
+    return savedCountry && ['argentina', 'brasil', 'uruguay'].includes(savedCountry)
+      ? savedCountry
+      : 'argentina';
+  });
   const [isLoading, setIsLoading] = useState(true);
-  
+  const [isDetectingLocation, setIsDetectingLocation] = useState(false);
+
   // Mapear país a idioma
   const getLanguage = (countryCode) => {
     const languageMap = {
       'argentina': 'es',
-      'brasil': 'pt', 
+      'brasil': 'pt',
       'uruguay': 'es'
     };
     return languageMap[countryCode] || 'es';
@@ -21,24 +28,58 @@ export const LanguageProvider = ({ children }) => {
 
   const language = getLanguage(country);
 
-  // Inicializar configuración dinámica y verificar primera visita
+  // Inicializar configuración dinámica y detectar país automáticamente
   useEffect(() => {
     const initializeApp = async () => {
       // Inicializar configuración dinámica de tiendas
       await initializeDynamicConfig();
-      
-      // Verificar si es la primera visita
+
       const savedCountry = localStorage.getItem('heathome-country');
-      const hasVisited = localStorage.getItem('heathome-visited');
-      
-      if (hasVisited && savedCountry) {
-        setCountry(savedCountry);
-        setIsFirstVisit(false);
+
+      // Solo detectar si no hay país guardado
+      if (!savedCountry) {
+        // Timeout de seguridad: si tarda más de 10 segundos, continuar de todos modos
+        const maxTimeout = setTimeout(() => {
+          console.warn('[LanguageContext] ⚠️ Timeout de detección alcanzado, cargando página con país por defecto');
+          setCountry('argentina');
+          localStorage.setItem('heathome-country', 'argentina');
+          setIsDetectingLocation(false);
+          setIsLoading(false);
+        }, 10000); // 10 segundos máximo
+
+        try {
+          setIsDetectingLocation(true);
+
+          const detectedCountry = await getCountryFromIP();
+
+          // Limpiar el timeout de seguridad si llegamos aquí
+          clearTimeout(maxTimeout);
+
+          if (detectedCountry && ['argentina', 'brasil', 'uruguay'].includes(detectedCountry)) {
+            setCountry(detectedCountry);
+            localStorage.setItem('heathome-country', detectedCountry);
+            console.log('[LanguageContext] ✅ País detectado automáticamente:', detectedCountry);
+          } else {
+            // Si el país detectado no está en nuestra lista, usar argentina por defecto
+            console.warn('[LanguageContext] País detectado no está en la lista, usando Argentina por defecto');
+            setCountry('argentina');
+            localStorage.setItem('heathome-country', 'argentina');
+          }
+
+        } catch (error) {
+          console.error('[LanguageContext] ❌ Error detectando país por IP:', error);
+          clearTimeout(maxTimeout);
+
+          setCountry('argentina');
+          localStorage.setItem('heathome-country', 'argentina');
+        } finally {
+          setIsDetectingLocation(false);
+          setIsLoading(false);
+        }
       } else {
-        setIsFirstVisit(true);
+        // Si hay país guardado, solo cargar
+        setIsLoading(false);
       }
-      
-      setIsLoading(false);
     };
 
     initializeApp();
@@ -58,25 +99,16 @@ export const LanguageProvider = ({ children }) => {
   const changeCountry = (countryCode) => {
     setCountry(countryCode);
     localStorage.setItem('heathome-country', countryCode);
-    localStorage.setItem('heathome-visited', 'true');
-  };
-
-  const handleFirstVisitComplete = (selectedCountry) => {
-    setCountry(selectedCountry);
-    setIsFirstVisit(false);
-    localStorage.setItem('heathome-country', selectedCountry);
-    localStorage.setItem('heathome-visited', 'true');
   };
 
   return (
-    <LanguageContext.Provider value={{ 
-      country, 
-      language, 
+    <LanguageContext.Provider value={{
+      country,
+      language,
       changeCountry,
-      isFirstVisit,
       isLoading,
-      handleFirstVisitComplete,
-      t 
+      isDetectingLocation,
+      t
     }}>
       {children}
     </LanguageContext.Provider>
